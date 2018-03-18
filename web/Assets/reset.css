@@ -1,0 +1,11 @@
+a img{
+	border: none;	
+}
+.pass a{
+	  color: #919aa1;
+	text-decoration: none;	
+}
+.pass a:hover {
+
+  text-decoration: underline;
+}
