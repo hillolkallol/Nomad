@@ -1,4 +1,4 @@
-
+package Model;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.A2219BF8-4D4E-7C33-D0F6-F8CCD1C68CF7]
 // </editor-fold> 

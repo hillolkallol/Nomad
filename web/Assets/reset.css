@@ -9,3 +9,9 @@ a img{
 
   text-decoration: underline;
 }
+.navbar_padding {
+  margin-bottom: 40px;
+}
+.col-centered{
+    margin: 0 auto;
+}

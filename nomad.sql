@@ -31,6 +31,8 @@ from_location VARCHAR(20) NOT NULL,
 to_destination VARCHAR(20) NOT NULL,
 seats_left INT NOT NULL,
 seats_total INT NOT NULL,
+user_id INT NOT NULL,
+FOREIGN KEY (user_id) REFERENCES User(user_id),
 PRIMARY KEY (schedule_id)
 );
 

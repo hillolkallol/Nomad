@@ -18,7 +18,7 @@
     <head>
 <header>
 <div class = "container">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar_padding">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
     <span class="navbar-toggler-icon"></span>
@@ -46,6 +46,8 @@
   </div>
 </nav>
 </div>
+    <div class="container">
+    </div>
 </header>
 </html>
 
