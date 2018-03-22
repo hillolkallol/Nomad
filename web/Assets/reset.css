@@ -1,11 +1,23 @@
 a img{
-	border: none;	
+    border: none;	
 }
 .pass a{
-	  color: #919aa1;
-	text-decoration: none;	
+    color: #919aa1;
+    text-decoration: none;	
 }
 .pass a:hover {
 
-  text-decoration: underline;
+    text-decoration: underline;
+}
+.navbar_padding {
+    margin-bottom: 40px;
+}
+.col-centered{
+    margin: 0 auto;
+}
+
+.jumbotron {
+    background-color: #1A1A1A;
+    padding: 0;
+    margin-bottom: 0;
 }
