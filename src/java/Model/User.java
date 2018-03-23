@@ -1,4 +1,5 @@
 package Model;
+
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.A2219BF8-4D4E-7C33-D0F6-F8CCD1C68CF7]
 // </editor-fold> 
@@ -23,6 +24,25 @@ public class User {
     // #[regen=yes,id=DCE.39B06EA4-9C42-E31A-56C3-18CA3BA35425]
     // </editor-fold> 
     private boolean IsDriver;
+    
+    private String email_id;
+
+    public String getEmail_id() {
+        return email_id;
+    }
+
+    public void setEmail_id(String email_id) {
+        this.email_id = email_id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    private String password;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.7D8E2A18-CD46-F99D-E374-C882D0969CCE]

@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Driver(
 user_id INT NOT NULL, 
 license_no INT NOT NULL,
 insurance_no INT NOT NULL,
+insurance_com VARCHAR(20) NOT NULL,
 PRIMARY KEY (user_id)
 );
 
@@ -69,6 +70,14 @@ rider_id INT NOT NULL,
 trip_id INT NOT NULL,
 schedule_id INT NOT NULL,
 PRIMARY KEY (rider_id, trip_id, schedule_id)
+);
+
+CREATE TABLE IF NOT EXISTS Temp_Registration( 
+temp_reg_id INT NOT NULL AUTO_INCREMENT,
+email_id INT NOT NULL,
+temp_hash INT NOT NULL,
+user_id INT NOT NULL,
+PRIMARY KEY (temp_reg_id)
 );
 
 

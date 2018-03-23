@@ -1,17 +1,66 @@
 a img{
-	border: none;	
+    border: none;	
 }
 .pass a{
-	  color: #919aa1;
-	text-decoration: none;	
+    color: #919aa1;
+    text-decoration: none;	
 }
 .pass a:hover {
 
-  text-decoration: underline;
+    text-decoration: underline;
 }
 .navbar_padding {
-  margin-bottom: 40px;
+
+    margin-bottom: 40px;
+
 }
 .col-centered{
     margin: 0 auto;
 }
+
+
+.jumbotron {
+    background-color: #1A1A1A;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/*sign in starts*/
+.login_page_body {
+	max-width:45%;
+	margin: auto;
+	margin-top: 3%;
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+}
+
+.sign_in_section {
+	text-align: center;
+	background-color:#FDFEFE;
+	padding: 20px;
+	margin: 20px;
+	-webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 1);
+}
+
+.fixed_footer {
+	bottom: 0;
+	position: fixed;
+}
+
+.sign_up_section {
+	text-align: center;
+	background-color:#FDFEFE;
+	padding: 20px;
+	margin: 20px;
+	-webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 1);
+}
+
+/*sign in ends*/
+

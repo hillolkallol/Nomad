@@ -3,7 +3,7 @@
     Created on : Mar 17, 2018, 6:24:21 PM
     Author     : suraj
 --%>
-<%@include file ="Header_Footer/header.jsp" %>
+<%@include file ="Header_Footer/header_before_login.jsp" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+
         <div class="container">
                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -36,7 +37,8 @@
             </a>
           </div>
         </div>
-        
-    </body>
+    </div>
+
+</body>
 </html>
 <%@include file ="Header_Footer/footer.jsp" %>

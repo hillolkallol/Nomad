@@ -7,6 +7,18 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
+<<<<<<< HEAD
+                    <file>${file.reference.jstl-1.2.jar-1}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.mail.jar-1}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.mysql-connector-java-5.1.40-bin.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.activation.jar-1}</file>
+=======
                     <file>${file.reference.mysql-connector.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -21,6 +33,7 @@
                 <library dirs="200">
                     <file>${file.reference.activation.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
+>>>>>>> 42dc6e4e7dc26c2d21980cb01793eef0c70b554f
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
