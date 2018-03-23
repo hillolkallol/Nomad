@@ -1,3 +1,5 @@
+use Nomad;
+
 CREATE TABLE IF NOT EXISTS User(
 user_id INT NOT NULL AUTO_INCREMENT, 
 email_id VARCHAR(20) NOT NULL,
@@ -6,6 +8,7 @@ first_name VARCHAR(20) NOT NULL,
 last_name VARCHAR(20) NOT NULL,
 address VARCHAR(20) NOT NULL,
 gender VARCHAR(10) NOT NULL,
+schedule_id INT,
 UNIQUE (email_id),
 PRIMARY KEY (user_id)
 );
@@ -25,11 +28,14 @@ PRIMARY KEY (user_id)
 
 CREATE TABLE IF NOT EXISTS Schedule(
 schedule_id INT NOT NULL AUTO_INCREMENT, 
-time DATETIME,
+date 	VARCHAR(20),
+time VARCHAR(20),
 from_location VARCHAR(20) NOT NULL,
 to_destination VARCHAR(20) NOT NULL,
 seats_left INT NOT NULL,
 seats_total INT NOT NULL,
+user_id INT NOT NULL,
+
 PRIMARY KEY (schedule_id)
 );
 
