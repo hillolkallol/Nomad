@@ -41,11 +41,11 @@
                                 <a class="nav-link" href="#">About</a>
                             </li>
                         </ul>
-                        <form method="get" action="login" class="form-inline my-2 my-lg-0">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Sign In</button>
-                        </form>
-                        <form method="get" action="registration" class="form-inline my-2 my-lg-0">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Sign Up</button>
+                        <a class="customize_link" href="login">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Sign In</button></a>
+                        
+                        <a class="customize_link" href="registration">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Sign Up</button></a>
                         </form>
                     </div>
                 </nav>
