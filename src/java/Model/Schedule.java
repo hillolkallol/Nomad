@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author suraj
@@ -15,7 +17,8 @@ public class Schedule {
     // #[regen=yes,id=DCE.AAA2DB41-12AF-70D9-6C0A-5FE82CEB762D]
     // </editor-fold> 
     public int scheduleID;
-
+    
+    public String date;
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.C2163A8E-A97A-F692-AC8E-CD7FE5D2ED18]
     // </editor-fold> 
