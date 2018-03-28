@@ -45,7 +45,7 @@
                     </div>
                     
                     <label><%= error%></label><br><br>
-                    <input class="btn btn-primary" type="submit" value="Sign In"><br>
+                    <input class="btn btn-primary" type="submit" value="Sign Up"><br>
                 </form>
             </div>
         </div>
