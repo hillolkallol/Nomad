@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -70,13 +71,29 @@ public class schedule_controller extends HttpServlet {
         String time = request.getParameter("time");
         String seats_left = request.getParameter("seats_left");
         String seats_total = request.getParameter("total_seats");
-        System.out.println(from + to +  time + seats_left);
-        
+        HttpSession ses = request.getSession(false);
+        int u_id = (Integer) ses.getAttribute("user_id");        
         ScheduleTable scTable = new ScheduleTable();
         try {
-            scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total);
+            scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            if (ses != null) {
+                if(ses.getAttribute("user") != null){
+                    System.out.println("not null");
+                    //request.getRequestDispatcher(page).forward(request, response);
+                    response.sendRedirect("dashboard");
+                }
+                else {
+                    //out.println("null");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    //response.sendRedirect("login?request="+request+"&response="+response);
+                }
+            } else {
+                System.out.println("session null");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
             
-        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            
+//        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         } catch (SQLException ex) {
             System.out.println(ex);
         }

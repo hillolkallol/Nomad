@@ -25,3 +25,4 @@ build.xml
 /nbproject/
 nbproject/private/private.properties
 nbproject/private/*.*
+src/java/Model/Database/MySQLConnection.java

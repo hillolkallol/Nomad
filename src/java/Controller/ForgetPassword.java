@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.Database.UserTable;
+import java.net.MalformedURLException;
 
 /**
  *
@@ -48,7 +49,13 @@ public class ForgetPassword extends HttpServlet {
         
         UserTable usertable = new UserTable();
         String s = "";
-        s = usertable.passRecovery(email_or_username, request);
+        try {
+            s = usertable.passRecovery(email_or_username, request);
+        } catch (MessagingException ex) {
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("pass_recovery", s);
         doGet(request, response);
     }
