@@ -37,7 +37,7 @@ public class UserTable {
     
     public boolean login(User user){
         con = MySQLConnection.connect();
-        String sql = "SELECT email_id FROM user WHERE email_id=? AND password=?";
+        String sql = "SELECT email_id FROM User WHERE email_id=? AND password=?";
         boolean bool = false;
         try {
             pst = con.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class UserTable {
     public String passRecovery(String email_or_username, HttpServletRequest request) throws AddressException, MessagingException, MalformedURLException {
         String msg = "";
         
-        String sql = "SELECT email_id FROM user WHERE email_id=?";
+        String sql = "SELECT email_id FROM User WHERE email_id=?";
         con = MySQLConnection.connect();
         try {
             pst = con.prepareStatement(sql);
@@ -123,4 +123,26 @@ public class UserTable {
         
         return msg;
     }
+    
+       
+    public int getID(User user){
+        con = MySQLConnection.connect();
+        String sql = "SELECT user_id FROM User WHERE email_id=?";
+        int id=0 ;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getEmail_id());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("user_id");
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
 }
+    
+

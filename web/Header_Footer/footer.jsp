@@ -33,7 +33,7 @@
                         <!--First column-->
                         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                             <p class="text-uppercase mb-4 font-weight-bold">Nomad</p>
-                            <p>Put your thoughts here about the company.</p>
+                            <p>Facilitate Carpooling by connecting potential commute passengers</p>
                         </div>
                         <!--/.First column-->
 

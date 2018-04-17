@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DashboardController extends HttpServlet {
     List<Schedule> scheduleList;
+    List<Schedule> userScheduleList;
     ScheduleTable scTable = new ScheduleTable();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,8 +48,15 @@ public class DashboardController extends HttpServlet {
         try {
             
             //all scheduleTable
-            scheduleList = scTable.getAllSchedule();
+            
+            HttpSession ses = request.getSession(false);
+            int u_id = (Integer) ses.getAttribute("user_id");
+//            System.out.println(ses.getAttribute("user_id"));
+            String from = request.getParameter("city");           
+            scheduleList = scTable.getAllSchedule(u_id, from);
+            userScheduleList = scTable.getUserSchedule(u_id);
             request.setAttribute("scheduleList", scheduleList);
+            request.setAttribute("userScheduleList", userScheduleList);
 //            request.setAttribute("mySchedule")
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         } catch (SQLException ex) {

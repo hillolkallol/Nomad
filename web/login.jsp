@@ -27,7 +27,7 @@
                 <form method="post" action="login_checking" class="panel-body">
                     <input class="form-control" type="text" placeholder="Email Address" name="EMAIL" required><br>
                     <input class="form-control" type="password" placeholder="Password" name="PASSWORD" required><br>
-                    <label><%= error%></label><br><br>
+                    <label class="text-danger"><%= error%></label><br><br>
                     <input class="btn btn-primary" type="submit" value="Sign In"><br>
                 </form>
 

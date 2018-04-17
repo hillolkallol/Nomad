@@ -39,8 +39,10 @@ public class LoginChecking extends HttpServlet {
         
         if(b){
             request.setAttribute("user", user);
+            int id = usertable.getID(user);
             HttpSession session =request.getSession();
             session.setAttribute("user", user);
+            session.setAttribute("user_id", id);
             response.sendRedirect("dashboard");
         }
         else {
