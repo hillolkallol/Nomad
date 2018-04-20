@@ -17,7 +17,8 @@ public class ScheduleTable {
     private  Connection conn = MySQLConnection.connect();
     private ResultSet resultSet = null;
     private PreparedStatement preparedStatement = null;
-    private final String selectStmt = "SELECT * FROM Schedule;";
+    private final String selectStmt = "SELECT * FROM Schedule where user_id != ?;";
+    private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?";
     private final String selectOne = "SELECT * from Schedule where schedule_id = ?";
     private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?)";
     private static final int schedule_id = 0;
@@ -28,11 +29,42 @@ public class ScheduleTable {
     private static final String seats_total = "seats_total";  
 //    private static final String date = "date";
     
-    public List<Schedule> getAllSchedule() throws SQLException{
-       preparedStatement = conn.prepareStatement(selectStmt);
+    public List<Schedule> getAllSchedule(int userID, String from) throws SQLException{
+        
+        if(from != null){
+            System.out.println(from);
+            String Stmt = "SELECT * FROM Schedule where user_id != ? and from_location = ?;";
+            preparedStatement = conn.prepareStatement(Stmt);
+            preparedStatement.setInt(1, userID);
+            preparedStatement.setString(2, from.trim());
+        }
+        else{
+            preparedStatement = conn.prepareStatement(selectStmt);
+            preparedStatement.setInt(1, userID);
+        }
+       resultSet = preparedStatement.executeQuery();
+
+       List<Schedule> schdeleList = new ArrayList<Schedule>();
+       while (resultSet.next()) {
+            System.out.println(resultSet.getInt(1));
+            Schedule s = new Schedule();
+            s.scheduleID = resultSet.getInt(1);
+            s.date = resultSet.getString(2);
+            s.time = resultSet.getString(3);
+            s.from = resultSet.getString(from_location);
+            s.to = resultSet.getString(to_destination);
+            s.seats_left = resultSet.getInt(seats_left);
+            s.seats_total = resultSet.getInt(seats_total);  
+            schdeleList.add(s);
+       }
+        return schdeleList;
+    }
+    
+    public List<Schedule> getUserSchedule(int userID) throws SQLException{
+       preparedStatement = conn.prepareStatement(selectScheduleUser);
+       preparedStatement.setInt(1, userID);
        resultSet = preparedStatement.executeQuery();
        List<Schedule> schdeleList = new ArrayList<Schedule>();
-       System.out.println("-------------------------------------------------------------");
        while (resultSet.next()) {
         Schedule s = new Schedule();
         s.scheduleID = resultSet.getInt(1);
@@ -67,7 +99,7 @@ public class ScheduleTable {
         return s;
     }
     
-       public void insertDriverSchedule(String from, String to, String date, String time, String seats_left, String total_seats) throws SQLException{
+       public void insertDriverSchedule(String from, String to, String date, String time, String seats_left, String total_seats, int userID) throws SQLException{
            preparedStatement = conn.prepareStatement(insertStmt);
            preparedStatement.setString(1, from);
            preparedStatement.setString(2,to);
@@ -75,9 +107,7 @@ public class ScheduleTable {
            preparedStatement.setString(4,time);
            preparedStatement.setInt(5,Integer.parseInt(seats_left));
            preparedStatement.setInt(6,Integer.parseInt(total_seats));
-           //Need to set user Id here
-           preparedStatement.setInt(7,1);
-           
+           preparedStatement.setInt(7,userID);
            preparedStatement.executeUpdate();
            
            
