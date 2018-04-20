@@ -64,3 +64,157 @@ a img{
 
 /*sign in ends*/
 
+
+/*Dropdown Style starts*/
+.menu {
+  list-style:none;
+  display: inline;
+  float: right;
+}
+
+.menu > li {
+  float: left;
+  position: relative;
+  -webkit-transform: skewX(25deg);
+}
+
+.menu a {
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.menu li ul li:hover {
+  background: #e74c3c;
+}
+
+.menu > li > a {
+  -webkit-transform: skewX(-25deg);
+}
+
+.submenu {
+
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+  -webkit-transform: skewX(-25deg);
+  -webkit-transform-origin: left top;
+}
+
+.submenu li {
+  background-color: #34495e;
+  position: relative;
+  overflow: hidden;
+}
+
+.submenu > li > a {
+	text-align: center;
+}
+
+.submenu > li::after {
+  content:'';
+  position: absolute;
+  top: -125%;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .9);
+}
+
+/* Odd stuff */
+.submenu > li:nth-child(odd) {
+  -webkit-transform: skewX(-25deg) translateX(0);
+}
+
+.submenu > li:nth-child(odd) > a {
+  -webkit-transform: skewX(25deg);
+}
+
+.submenu > li:nth-child(odd)::after {
+  right: -50%;
+  -webkit-transform: skewX(-25deg) rotate(3deg);
+}
+
+/* Even stuff */
+.submenu > li:nth-child(even) {
+  -webkit-transform: skewX(25deg) translateX(0);
+}
+
+.submenu > li:nth-child(even) > a {
+  -webkit-transform: skewX(-25deg);
+}
+
+.submenu > li:nth-child(even)::after {
+  left: -50%;
+  -webkit-transform: skewX(25deg) rotate(3deg);
+}
+
+/* Show dropdown */
+.submenu, .submenu li {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.submenu li {
+  transition: .2s ease -webkit-transform;
+}
+
+.menu > li:hover .submenu, .menu > li:hover .submenu li {
+  opacity: 1;
+  visibility: visible;
+  
+}
+
+.menu > li:hover .submenu li:nth-child(even) {
+  -webkit-transform: skewX(25deg) translateX(15px);
+}
+
+.menu > li:hover .submenu li:nth-child(odd) {
+  -webkit-transform: skewX(-25deg) translateX(-15px);
+}
+
+.circular_image {
+    opacity: 0.6;
+    width: 50px;
+    height: 50px;
+    border-radius: 75px;
+    -webkit-border-radius: 75px;
+    -moz-border-radius: 75px;
+    border: 2px solid black;
+    /*box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.9);*/
+}
+/*dropdown style end*/
+
+/*profile starts*/
+.profile_body_section {
+	background-color:#FDFEFE;
+	/*padding: 20px;*/
+	/*margin: 20px;*/
+	-webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 1);
+}
+
+.profile_created_by_me_table {
+	width: 100%;
+}
+
+.dashboard_created_by_me_table_column1 {
+	text-align: right;
+}
+
+.min_height {
+	min-height: 70%;
+}
+
+.min_height {
+	min-height: 70%;
+}
+
+.body {
+	width:80%;
+	margin: auto;
+	
+}
+/*profile ends*/
