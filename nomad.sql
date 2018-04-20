@@ -77,3 +77,18 @@ temp_hash INT NOT NULL,
 user_id INT NOT NULL,
 PRIMARY KEY (temp_reg_id)
 );
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `Nomad`.`recovery_temp_info` (
+  `serial_id` INT NOT NULL AUTO_INCREMENT,
+  `email_address` VARCHAR(45) NULL,
+  `auto_id` VARCHAR(45) NULL,
+  PRIMARY KEY (`temp_id`));

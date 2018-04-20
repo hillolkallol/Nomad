@@ -24,8 +24,15 @@ public class User {
     // #[regen=yes,id=DCE.39B06EA4-9C42-E31A-56C3-18CA3BA35425]
     // </editor-fold> 
     private boolean IsDriver;
-    
     private String email_id;
+    private String password;
+    private String address;
+    private String gender;
+    
+    private int LNo;
+    private int INo;
+    private String ICom;
+    
 
     public String getEmail_id() {
         return email_id;
@@ -42,26 +49,82 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    private String password;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.7D8E2A18-CD46-F99D-E374-C882D0969CCE]
-    // </editor-fold> 
-    public void setName (String firstName, String lastName) {
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.8C31E2DE-982F-D563-CAA6-34C44FA61056]
-    // </editor-fold> 
-    public String getName () {
-        return null;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.9E5E08A7-90FD-AB43-21F9-A74691F25ADC]
-    // </editor-fold> 
     public void setProfile () {
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public boolean isIsDriver() {
+        return IsDriver;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getLNo() {
+        return LNo;
+    }
+
+    public int getINo() {
+        return INo;
+    }
+
+    public String getICom() {
+        return ICom;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setIsDriver(boolean IsDriver) {
+        this.IsDriver = IsDriver;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setLNo(int LNo) {
+        this.LNo = LNo;
+    }
+
+    public void setINo(int INo) {
+        this.INo = INo;
+    }
+
+    public void setICom(String ICom) {
+        this.ICom = ICom;
+    }
+    
+    
 }
 
