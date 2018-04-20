@@ -19,6 +19,7 @@ public class MySQLConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Nomad", "nomad", "cR4zYp4$$w0rd!");
             Connection con = DriverManager.getConnection("jdbc:mysql://thisbox.is-not-certified.com/Nomad", "nomad", "cR4zYp4$$w0rd!");
 
             //Connection con = DrsiverManager.getConnection("jdbc:mysql://localhost:3306/apollo10_survey_system", "apollo10", "udGo1Qrt3L");//connection established!!!

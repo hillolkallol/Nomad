@@ -25,6 +25,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,7 @@ public class UserTable {
     private Connection con = null;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
+    private PreparedStatement pst2 = null;
     
     public boolean login(User user){
         con = MySQLConnection.connect();
@@ -78,12 +80,12 @@ public class UserTable {
                     String to = email_address;
                     String from = "care@nomad.com";
                     String host = "localhost";
-                    String subject = "Passowrd Recovery | Survey";
+                    String subject = "Passowrd Recovery | Nomad";
                     
                     SecureRandom random = new SecureRandom();
                     String auto_id = new BigInteger(130, random).toString(32);
                     URL url = new URL(request.getRequestURL().toString());
-                    String link = "http://" + url.getAuthority() + "/SurveyWebProgramming/recovery?email="+email_address+"&id="+auto_id+"";
+                    String link = "http://" + url.getAuthority() + "/Nomad/recovery?email="+email_address+"&id="+auto_id+"";
                     
                     String body = "Click the link below to reset your passwrod.."
                             + "<form method=\"post\" action=\"recovery\">"
@@ -143,6 +145,96 @@ public class UserTable {
         }
         return id;
     }
+    
+    public String resetPassword(User userDetails) {
+        String message = "";
+        String sql = "UPDATE User SET password=? WHERE email_id=?";
+        con = MySQLConnection.connect();
+        try {
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, userDetails.getPassword());
+            pst.setString(2, userDetails.getEmail_id());
+            //JOptionPane.showMessageDialog(null, userDetails.getPassword() + " " + userDetails.getEmail_address());
+            
+            if (pst.executeUpdate()!= 0) {
+                message = "New Information has been updated!";
+                RecoveryTempInfoTable recoveryTempInfoTable = new RecoveryTempInfoTable();
+                recoveryTempInfoTable.deleteRaws(userDetails.getEmail_id());
+            }
+            else{
+                message = "There was some problem in updating!";
+            }
+            pst.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return message;
+    }
+
+    public void register_as_rider(User user) {
+//        JOptionPane.showMessageDialog(null, user.getFirstName());
+//        boolean bool2 = false;
+        con = MySQLConnection.connect();
+        String sql = "INSERT INTO User(email_id, password, first_name, last_name, address, gender) VALUES (?,?,?,?,?,?)";
+        
+        try {
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, user.getEmail_id());
+            pst.setString(2, user.getPassword());
+            pst.setString(3, user.getFirstName());
+            pst.setString(4, user.getLastName());
+            pst.setString(5, user.getAddress());
+            pst.setString(6, user.getGender());
+            
+            pst.execute();
+            pst.close();
+        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        con = MySQLConnection.connect();
+        String sql2 = "INSERT INTO Rider(user_id) VALUES (?)";
+        
+        try {
+            pst2 = con.prepareStatement(sql2);
+            
+            pst2.setInt(1, getID(user));
+            
+            pst2.execute();
+            pst2.close();
+        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        return bool2;
+    }
+
+    public void register_as_driver(User user2) {
+//        boolean bool = false;
+        con = MySQLConnection.connect();
+        String sql = "INSERT INTO Driver(user_id, license_no, insurance_no, insurance_com) VALUES (?,?,?,?)";
+        
+        try {
+            pst = con.prepareStatement(sql);
+            
+            pst.setInt(1, user2.getUserID());
+            pst.setInt(2, user2.getLNo());
+            pst.setInt(3, user2.getINo());
+            pst.setString(4, user2.getICom());
+            
+            pst.execute();
+            pst.close();
+        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        return bool;
+    }
+
 }
     
 

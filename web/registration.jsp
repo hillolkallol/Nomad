@@ -24,17 +24,19 @@
                 <div class="panel-heading">
                     <!--<img class="logo" src="img/logo.png"><br><br>-->
                     <h2 >Sign Up</h2></div>
-                <form method="post" action="login_checking" class="panel-body">
+                <form method="post" action="registration" class="panel-body">
                     <input class="form-control" type="text" placeholder="First Name" name="FNAME" required><br>
                     <input class="form-control" type="text" placeholder="Last Name" name="LNAME" required><br>
                     <input class="form-control" type="text" placeholder="Email Address" name="EMAIL" required><br>
                     <input class="form-control" type="password" placeholder="password" name="PASSWORD" required><br>
                     <input class="form-control" type="text" placeholder="Address" name="ADDRESS" required><br>
                     <label >Gender: </label>
-                    <input type="radio" name="gender" value="1" style="display: inline" checked> Male
-                    <input type="radio" name="gender" style="display: inline" value="2"> Female<br>
+                    <input type="radio" name="gender" value="Male" style="display: inline" checked> Male
+                    <input type="radio" name="gender" style="display: inline" value="Female"> Female<br>
                     
-                    <input type="radio" name="group1" value="1" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <input type="radio" name="group1" value="abc" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <input type="radio" name="group1" value="d"  hidden checked>
+                    
                     <label >Register as a driver too </label><br>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">

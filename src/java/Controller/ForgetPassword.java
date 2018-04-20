@@ -53,8 +53,6 @@ public class ForgetPassword extends HttpServlet {
             s = usertable.passRecovery(email_or_username, request);
         } catch (MessagingException ex) {
             Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("pass_recovery", s);
         doGet(request, response);
