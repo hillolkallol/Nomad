@@ -146,6 +146,25 @@ public class UserTable {
         return id;
     }
     
+    public String getName(User user){
+        con = MySQLConnection.connect();
+        String sql = "SELECT first_name FROM User WHERE email_id=?";
+        String name ="" ;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getEmail_id());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                name = rs.getString("first_name");
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+    
     public String resetPassword(User userDetails) {
         String message = "";
         String sql = "UPDATE User SET password=? WHERE email_id=?";
@@ -233,6 +252,96 @@ public class UserTable {
             Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
         }
 //        return bool;
+    }
+    
+    public User userInfo(int id){
+        User userDetails = new User();
+        
+        String sql = "SELECT * FROM User WHERE user_id=?";
+        con = MySQLConnection.connect();
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                String email_address = rs.getString("email_id");
+                String password = rs.getString("password");
+                String gender = rs.getString("gender");
+                
+                userDetails.setPassword(password);
+                userDetails.setFirstName(first_name);
+                userDetails.setLastName(last_name);
+                userDetails.setEmail_id(email_address);
+                userDetails.setGender(gender);
+                
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return userDetails;
+    }
+
+    public String updateUserInfo(User userDetails) {
+        String message = "";
+        String sql = "UPDATE User SET first_name=?,last_name=?,email_id=?,password=? WHERE user_id=?";
+        con = MySQLConnection.connect();
+        try {
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, userDetails.getFirstName());
+            pst.setString(2, userDetails.getLastName());
+            pst.setString(3, userDetails.getEmail_id());
+            pst.setString(4, userDetails.getPassword());
+            pst.setInt(5, userDetails.getUserID());
+            
+            if (pst.executeUpdate()!= 0) {
+                message = "New Information has been updated!";
+            }
+            else{
+                message = "There was some problem in updating!";
+            }
+            pst.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return message;
+    }
+
+    public User driverInfo(int userID) {
+        User userDetails = new User();
+        
+        String sql = "SELECT * FROM Driver WHERE user_id=?";
+        con = MySQLConnection.connect();
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, userID);
+            
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                int license_no = rs.getInt("license_no");
+                int insurance_no = rs.getInt("insurance_no");
+                String insurance_com = rs.getString("insurance_com");
+                
+                userDetails.setLNo(license_no);
+                userDetails.setINo(insurance_no);
+                userDetails.setICom(insurance_com);
+                
+            }
+            
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return userDetails;
     }
 
 }

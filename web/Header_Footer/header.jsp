@@ -57,9 +57,25 @@
                             <input class="form-control mr-sm-2" type="text" placeholder="Search">
                             <!--<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
                         </form>
-                            <ul class="navbar-nav mr-auto">
+<!--                            <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
                                         <a class="nav-link"  href="logout" ><i class="fa fa-power-off"></i>Log Out</a>
+                                </li>
+                            </ul>-->
+                            <ul class="menu cf">
+                                <li>
+                                    <a href="#"><img class="circular_image" src="images/logo.png"></a>
+                                    <ul class="submenu">
+                                        <li><a href="profile">My Account (${user.getFirstName()})</a></li>
+                                        <li><a href="beDriver">Become a driver</a></li>
+                                        <li>
+                                            <a href="logout"><i class="fa fa-power-off"></i> Sign Out</a></li>
+
+<!--                                            <form action="logout" method="post">
+                                            <input type="submit" value="Sign Out">
+                                            </form>
+                                                </li>-->
+                                    </ul>
                                 </li>
                             </ul>
                         
