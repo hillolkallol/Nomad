@@ -17,10 +17,14 @@ public class ScheduleTable {
     private  Connection conn = MySQLConnection.connect();
     private ResultSet resultSet = null;
     private PreparedStatement preparedStatement = null;
+//    String ex= Se;ect * from, shechudel where user_id = ? and schedule_id = ?
     private final String selectStmt = "SELECT * FROM Schedule where user_id != ?;";
     private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?";
     private final String selectOne = "SELECT * from Schedule where schedule_id = ?";
+    private final String deleteStmt = "Delete from Schedule where schedule_id = ?";
     private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?)";
+    private final String updateStmt = "Update Schedule set from_location = ?, to_destination = ? , date = ?, time =?, seats_left=?, seats_total=? where user_id = ?";
+
     private static final int schedule_id = 0;
     private static final String time = "time";
     private static final String from_location = "from_location";
@@ -32,7 +36,6 @@ public class ScheduleTable {
     public List<Schedule> getAllSchedule(int userID, String from) throws SQLException{
         
         if(from != null){
-            System.out.println(from);
             String Stmt = "SELECT * FROM Schedule where user_id != ? and from_location = ?;";
             preparedStatement = conn.prepareStatement(Stmt);
             preparedStatement.setInt(1, userID);
@@ -79,7 +82,7 @@ public class ScheduleTable {
         return schdeleList;
     }
     
-       public Schedule getScheduleByID(int scheduleID) throws SQLException{
+           public Schedule getScheduleByID(int scheduleID) throws SQLException{
         preparedStatement = conn.prepareStatement(selectOne);
         preparedStatement.setInt(1, scheduleID);
         resultSet = preparedStatement.executeQuery();
@@ -108,9 +111,27 @@ public class ScheduleTable {
            preparedStatement.setInt(5,Integer.parseInt(seats_left));
            preparedStatement.setInt(6,Integer.parseInt(total_seats));
            preparedStatement.setInt(7,userID);
-           preparedStatement.executeUpdate();
+           preparedStatement.executeUpdate();     
            
+       }
+       
+        public void updateDriverSchedule(String from, String to, String date, String time, String seats_left, String total_seats, int userID) throws SQLException{
+           preparedStatement = conn.prepareStatement(updateStmt);
+           preparedStatement.setString(1, from);
+           preparedStatement.setString(2,to);
+           preparedStatement.setString(3, date);
+           preparedStatement.setString(4,time);
+           preparedStatement.setInt(5,Integer.parseInt(seats_left));
+           preparedStatement.setInt(6,Integer.parseInt(total_seats));
+           preparedStatement.setInt(7,userID);
+           preparedStatement.executeUpdate();     
            
+       }
+        public void deleteDriverSchedule(int scheduleID) throws SQLException{
+           preparedStatement = conn.prepareStatement(deleteStmt);
+           preparedStatement.setInt(1, scheduleID);
+          
+           preparedStatement.executeUpdate();     
            
        }
 }

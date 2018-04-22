@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Database.ScheduleTable;
+import Model.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -24,7 +25,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "schedule_controller", urlPatterns = {"/schedule"})
 public class schedule_controller extends HttpServlet {
-
+    ScheduleTable scTable = new ScheduleTable();
+    Schedule schedule = new Schedule();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,8 +50,24 @@ public class schedule_controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        request.getRequestDispatcher("driver_schedule.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        if(action.equalsIgnoreCase("new")){
+            request.getRequestDispatcher("driver_schedule.jsp").forward(request, response);
+        }
+        else{
+            String schedule_id = request.getParameter("action");
+            int sch_id = Integer.parseInt(schedule_id); 
+            try {
+                schedule = scTable.getScheduleByID(sch_id);
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+             request.setAttribute("schedule", schedule);
+            //get Userschedule ma chai 
+            //Select * from Scheule where User _id = 
+
+            request.getRequestDispatcher("edit_driver_schedule.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -64,6 +82,10 @@ public class schedule_controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String action = request.getParameter("post_action");
+        System.out.print(action);
+
+        
         String from = request.getParameter("from");
         String to = request.getParameter("to");
         
@@ -73,9 +95,24 @@ public class schedule_controller extends HttpServlet {
         String seats_total = request.getParameter("total_seats");
         HttpSession ses = request.getSession(false);
         int u_id = (Integer) ses.getAttribute("user_id");        
+        
+//        System.out.println(from + to+ date +  time+ seats_left+ seats_total+ u_id+ action);
         ScheduleTable scTable = new ScheduleTable();
         try {
-            scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            
+            if(action.equalsIgnoreCase("insert")){
+                scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            }
+              if(action.equalsIgnoreCase("delete")){
+                  String id = request.getParameter("scheduleID");
+                  int sch_id = Integer.parseInt(id);
+                  scTable.deleteDriverSchedule(sch_id);
+//                scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            }
+            else{
+               
+                scTable.updateDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            }
             if (ses != null) {
                 if(ses.getAttribute("user") != null){
                     System.out.println("not null");
