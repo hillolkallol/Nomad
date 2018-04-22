@@ -19,6 +19,7 @@
                 <div class=" col-sm-4 col-sm-offset-4">
                   
                     <form action="schedule" method="POST" >
+                        <input type="hidden" name="post_action" value="insert" >
                        <div class="form-group">
                          <label>From</label>
                          <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50">
