@@ -14,7 +14,7 @@
     <body>
       
         <div  class="container">
-            <h1>Drivasder's Schedule</h1>
+            <h1>Driver's Schedule</h1>
             <div class="row">
                 <div class=" col-sm-4 col-sm-offset-4">
                   
@@ -22,23 +22,23 @@
                         <input type="hidden" name="post_action" value="insert" >
                        <div class="form-group">
                          <label>From</label>
-                         <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50">
+                         <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50" required>
                          </div>
                          <div class="form-group">
                          <label >To</label>
-                         <input type="text" class="form-control" id="to" name = "to" placeholder="Destination Address" size="50">
+                         <input type="text" class="form-control" id="to" name = "to" placeholder="Destination Address" size="50" required>
                          </div>
                          <div class="form-group">
                          <label>Date</label>
-                         <input type="date" class="form-control" id="date" name = "date">
+                         <input type="date" class="form-control" id="date" name = "date" required>
                          </div>
                          <div class="form-group">
                          <label>Time</label>
-                         <input type="time" class="form-control" id="time" name = "time">
+                         <input type="time" class="form-control" id="time" name = "time" required>
                          </div>
                         <div class="form-group">
                             <label>Total Number of Seats</label>
-                            <select class="form-control" id="total_Number_of_seats" name="total_seats">
+                            <select class="form-control" id="total_Number_of_seats" name="total_seats" required>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label>Number of Seats Available</label>
-                            <select class="form-control" id="Number_of_seats_available" name="seats_left">
+                            <select class="form-control" id="Number_of_seats_available" name="seats_left" required>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
