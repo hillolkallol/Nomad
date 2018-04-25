@@ -41,10 +41,10 @@
 
                         <!--Second column-->
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                            <p class="text-uppercase mb-4">About Us</p>
-                            <p class="pass"> <a href="#!">Company</a></p>
-                            <p class="pass"><a href="#!">Policy</a></p>
-                            <p class="pass"><a href="#!">Help</a></p>
+                            <p class="text-uppercase mb-4">About Us</a></p>
+                            <p class="pass"><a href="about.jsp">About</a></p>
+                            <p class="pass"><a href="HowItWorks.jsp">How It Works</a></p>
+                            <p class="pass"><a href="index.jsp">Home</a></p>
                         </div>
                         <!--/.Second column-->
 
@@ -53,8 +53,8 @@
                         <!--Third column-->
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                             <p class="text-uppercase mb-4 font-weight-bold">Useful links</p>
-                            <p class="pass"><a href="#!">Careers</a></p>
-                            <p class="pass"><a href="#!">FAQ</a></p>
+                            <p class="pass"><a href="careers.jsp">Careers</a></p>
+                            <p class="pass"><a href="faq.jsp">FAQ</a></p>
 
                         </div>
                         <!--/.Third column-->
