@@ -28,11 +28,11 @@
                     <form action = "schedule" method="POST">
                        <div class="form-group">
                          <label>From</label>
-                         <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50" value = ${schedule.getFrom()}>
+                         <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50" required value = ${schedule.getFrom()}>
                          </div>
                          <div class="form-group">
                          <label >To</label>
-                         <input type="text" class="form-control" id="to" name = "to" placeholder="Destination Address" size="50" value="${schedule.getTo()}">
+                         <input type="text" class="form-control" id="to" name = "to" placeholder="Destination Address" size="50" required value="${schedule.getTo()}">
                          </div>
                          <div class="form-group">
                          <label>Date</label>
@@ -40,11 +40,11 @@
                          </div>
                          <div class="form-group">
                          <label>Time</label>
-                         <input type="time" class="form-control" id="time" name = "time" value="${schedule.getTime()}">
+                         <input type="time" class="form-control" id="time" name = "time" required value="${schedule.getTime()}">
                          </div>
                         <div class="form-group">
                             <label>Total Number of Seats</label>
-                            <select class="form-control" id="total_Number_of_seats" name="total_seats" value="${schedule.getSeats_total()}">
+                            <select class="form-control" id="total_Number_of_seats" name="total_seats" required value="${schedule.getSeats_total()}">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label>Number of Seats Available</label>
-                            <select class="form-control" id="Number_of_seats_available" name="seats_left" value="${schedule.getSeats_left()}">
+                            <select class="form-control" id="Number_of_seats_available" name="seats_left" required value="${schedule.getSeats_left()}">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
