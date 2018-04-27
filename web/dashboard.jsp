@@ -104,7 +104,8 @@
                                     <!--<td>${schedule.getSeats_total()}</td>-->
                                     <td>
                                         <form action="schedule" method="GET">
-                                            <input type="hidden" name="action" value="${schedule.getScheduleID()}" >
+                                            <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
+                                               <input type="hidden" name="post_action" value="edit" >
                                             <input type="submit" class="btn btn-outline-primary" value="Edit" >
                                         </form>    
                                     </td>

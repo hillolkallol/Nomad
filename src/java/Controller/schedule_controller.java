@@ -109,9 +109,9 @@ public class schedule_controller extends HttpServlet {
                   scTable.deleteDriverSchedule(sch_id);
 //                scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
             }
-            else{
-               
-                scTable.updateDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+              else if(action.equalsIgnoreCase("edit")){
+                 int sch_id = Integer.parseInt(request.getParameter("scheduleID"));
+                scTable.updateDriverSchedule(from, to, date, time, seats_left, seats_total, sch_id);
             }
             if (ses != null) {
                 if(ses.getAttribute("user") != null){

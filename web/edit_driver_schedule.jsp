@@ -73,7 +73,7 @@
                             </select>
                         </div>
                                 <input type="hidden" name="post_action" value="update" >
-                        <input type="Submit" class="btn btn-primary"></input>
+                        <input type="Submit" class="btn btn-primary">
                     </form>
                 </div>
             </div>

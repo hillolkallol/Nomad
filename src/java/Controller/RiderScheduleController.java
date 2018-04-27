@@ -5,13 +5,17 @@
  */
 package Controller;
 
+import Model.Database.RiderScheduleTable;
+import Model.Database.ScheduleTable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +76,60 @@ public class RiderScheduleController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String action = request.getParameter("post_action");
+        System.out.print(action);
+        
+        
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");     
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        HttpSession ses = request.getSession(false);
+        int u_id = (Integer) ses.getAttribute("user_id");        
+        
         processRequest(request, response);
+                RiderScheduleTable RdTable = new RiderScheduleTable();
+        try {
+            
+            if(action.equalsIgnoreCase("insert")){
+                RdTable.insertRiderSchedule(from, to, date, time, u_id);
+            }
+              if(action.equalsIgnoreCase("delete")){
+                  String id = request.getParameter("scheduleID");
+                  int sch_id = Integer.parseInt(id);
+                  RdTable.deleteRiderSchedule(sch_id);
+//                scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+            }
+               else if(action.equalsIgnoreCase("edit")){
+                 int sch_id = Integer.parseInt(request.getParameter("scheduleID"));
+                RdTable.updateRiderSchedule(from, to, date, time, sch_id);
+            }
+//            else{
+//               
+//                RdTable.updateRiderSchedule(from, to, date, time, u_id);
+//            }
+            if (ses != null) {
+                if(ses.getAttribute("user") != null){
+                    System.out.println("not null");
+                    //request.getRequestDispatcher(page).forward(request, response);
+                    response.sendRedirect("dashboard");
+                }
+                else {
+                    //out.println("null");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    //response.sendRedirect("login?request="+request+"&response="+response);
+                }
+            } else {
+                System.out.println("session null");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+            
+            
+//        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
     /**
