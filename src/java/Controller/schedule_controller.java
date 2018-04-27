@@ -96,7 +96,6 @@ public class schedule_controller extends HttpServlet {
         HttpSession ses = request.getSession(false);
         int u_id = (Integer) ses.getAttribute("user_id");        
         
-//        System.out.println(from + to+ date +  time+ seats_left+ seats_total+ u_id+ action);
         ScheduleTable scTable = new ScheduleTable();
         try {
             
