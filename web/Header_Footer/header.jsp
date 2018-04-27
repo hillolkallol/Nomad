@@ -4,6 +4,7 @@
     Author     : suraj
 --%>
 
+<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
@@ -26,7 +27,7 @@
         <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaEYikP8pXvbBeGKA609lc93WC6wzV2Js"></script>
         <script src="Assets/geoLocation.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <head>
+    </head>
 
 
     <header>
@@ -64,7 +65,19 @@
                             </ul>-->
                             <ul class="menu cf">
                                 <li>
-                                    <a href="#"><img class="circular_image" src="images/logo.png"></a>
+                                    <%
+                                    String image = "";
+                                    User user = new User();
+                                    user = (User) sess.getAttribute("user");
+//                                    System.out.println(user.getIsDriver());
+                                    if(user.getIsDriver()){
+                                        image = "images/driver.PNG";
+                                    }
+                                    else
+                                        image = "images/rider.PNG";
+                                    %>
+                                    <!--<a href="#" ><img class="circular_image" src='images/user.png' onmouseover="this.src='<%= image %>';" onmouseout="this.src='images/user.png';" /></a>-->
+                                    <a href="#" ><img class="circular_image" src="<%= image %>"></a>
                                     <ul class="submenu">
                                         <li><a href="profile">My Account (${user.getFirstName()})</a></li>
                                         <li><a href="beDriver">Become a driver</a></li>
@@ -87,5 +100,4 @@
     
     
 </html>
-
 
