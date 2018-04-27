@@ -65,7 +65,7 @@ public class User {
         return userID;
     }
 
-    public boolean isIsDriver() {
+    public boolean getIsDriver() {
         return IsDriver;
     }
 

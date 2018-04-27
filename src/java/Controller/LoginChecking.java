@@ -43,9 +43,14 @@ public class LoginChecking extends HttpServlet {
             String name = usertable.getName(user);
             user.setUserID(id);
             user.setFirstName(name);
+            
+            boolean driver_or_not = usertable.checkIsDriver(user);
+            user.setIsDriver(driver_or_not);
+            
             HttpSession session =request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("user_id", id);
+            
             response.sendRedirect("dashboard");
         }
         else {

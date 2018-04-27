@@ -75,7 +75,7 @@ a img{
 .menu > li {
   float: left;
   position: relative;
-  -webkit-transform: skewX(25deg);
+  /*-webkit-transform: skewX(25deg);*/
 }
 
 .menu a {
@@ -86,11 +86,11 @@ a img{
 }
 
 .menu li ul li:hover {
-  background: #e74c3c;
+  background: black;
 }
 
 .menu > li > a {
-  -webkit-transform: skewX(-25deg);
+  /*-webkit-transform: skewX(-25deg);*/
 }
 
 .submenu {
@@ -99,7 +99,7 @@ a img{
   width: 200px;
   left: 50%;
   margin-left: -100px;
-  -webkit-transform: skewX(-25deg);
+  /*-webkit-transform: skewX(-25deg);*/
   -webkit-transform-origin: left top;
 }
 
@@ -124,30 +124,30 @@ a img{
 
 /* Odd stuff */
 .submenu > li:nth-child(odd) {
-  -webkit-transform: skewX(-25deg) translateX(0);
+  /*-webkit-transform: skewX(-25deg) translateX(0);*/
 }
 
 .submenu > li:nth-child(odd) > a {
-  -webkit-transform: skewX(25deg);
+  /*-webkit-transform: skewX(25deg);*/
 }
 
 .submenu > li:nth-child(odd)::after {
   right: -50%;
-  -webkit-transform: skewX(-25deg) rotate(3deg);
+  /*-webkit-transform: skewX(-25deg) rotate(3deg);*/
 }
 
 /* Even stuff */
 .submenu > li:nth-child(even) {
-  -webkit-transform: skewX(25deg) translateX(0);
+  /*-webkit-transform: skewX(25deg) translateX(0);*/
 }
 
 .submenu > li:nth-child(even) > a {
-  -webkit-transform: skewX(-25deg);
+  /*-webkit-transform: skewX(-25deg);*/
 }
 
 .submenu > li:nth-child(even)::after {
   left: -50%;
-  -webkit-transform: skewX(25deg) rotate(3deg);
+  /*-webkit-transform: skewX(25deg) rotate(3deg);*/
 }
 
 /* Show dropdown */
@@ -167,15 +167,16 @@ a img{
 }
 
 .menu > li:hover .submenu li:nth-child(even) {
-  -webkit-transform: skewX(25deg) translateX(15px);
+  /*-webkit-transform: skewX(25deg) translateX(15px);*/
 }
 
 .menu > li:hover .submenu li:nth-child(odd) {
-  -webkit-transform: skewX(-25deg) translateX(-15px);
+  /*-webkit-transform: skewX(-25deg) translateX(-15px);*/
 }
 
 .circular_image {
-    opacity: 0.6;
+    /*background: url('images/user.png');*/
+    opacity: 1;
     width: 50px;
     height: 50px;
     border-radius: 75px;
@@ -184,6 +185,14 @@ a img{
     border: 2px solid black;
     /*box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.9);*/
 }
+
+/*.circular_image:hover {
+        border: 2px solid green;
+        background: url('images/logo.png') no-repeat;
+        width: 50px;
+        height: 50px;
+}*/
+    
 /*dropdown style end*/
 
 /*profile starts*/
