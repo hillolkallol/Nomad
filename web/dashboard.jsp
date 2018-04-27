@@ -131,7 +131,6 @@
                                                   </td> 
                                             </tr>
                                           </tbody>
->>>>>>> Stashed changes
 
                                       </c:forEach>
                                   </table> 
