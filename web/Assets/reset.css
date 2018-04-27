@@ -12,7 +12,9 @@ a img{
 .navbar_padding {
 
     margin-bottom: 40px;
-
+}
+.margin_top{
+    margin-top: 40px;
 }
 .col-centered{
     margin: 0 auto;
@@ -33,8 +35,8 @@ a img{
 }
 
 .logo {
-	width: 100px;
-	height: 100px;
+	width: 96px;
+	height: 51px;
 }
 
 .sign_in_section {

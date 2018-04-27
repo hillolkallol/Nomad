@@ -17,6 +17,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Nomad</title>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="Assets/lux.css">
         <link rel="stylesheet" type="text/css" href="Assets/reset.css">
        
@@ -34,7 +36,8 @@
         <div class="jumbotron">
             <div class = "container">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar_padding">
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}">Nomad</a>
+                    
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard"><img class="logo" src="images/logo.png" ></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -42,7 +45,7 @@
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="${pageContext.request.contextPath}">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>

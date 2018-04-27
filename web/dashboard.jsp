@@ -46,8 +46,12 @@
           </li>
         </ul>
                     <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade active show" id="rides_available">
-            <table class="table table-hover">
+                    
+                        <div class="tab-pane fade active show" id="rides_available">
+                            <% ArrayList scheduleList = (ArrayList )  request.getAttribute("scheduleList"); %>
+                            <% ArrayList userList = (ArrayList )  request.getAttribute("userScheduleList"); %>
+                            <% if (scheduleList.size() > 0) {%>
+                            <table class="table table-hover">
                         <thead>
                           <tr>
                             <th scope="col">Date</th>
@@ -69,59 +73,75 @@
                                     <td>${schedule.getSeats_left()}</td>
                                     <!--<td>${schedule.getSeats_total()}</td>-->
                                     <td>
-<!--                                        <form action="dashboard" method="POST">
-                                            <input type="hidden" name="requestID" value="${schedule.getScheduleID()}" >
-                                            <input type="submit" class="btn btn-outline-primary" value="Request" >
-                                        </form>-->
+                                    <form action="email" method="POST">
+                                        <input type="hidden" name="requestID" value="${schedule.getScheduleID()}" >
+                                        <input type="submit" class="btn btn-outline-primary" value="Request" >
+                                    </form>
                                     </td> 
                               </tr>
                             </tbody>
 
                         </c:forEach>
                     </table> 
-          </div>
-          <div class="tab-pane fade" id="profile">
-              <table class="table table-hover">
-                        <thead>
-                          <tr>
-                           <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">From</th>
-                            <th scope="col">TO</th>
-                            <th scope="col">Action</th>
-                            <!--<th scope="col">Time</th>-->
-                          </tr>
-                        </thead>
-                        <c:forEach items="${userScheduleList}" var="schedule">             
-                            <tbody>
-                              <tr class="table-secondary">
-                                    <!--<td>${schedule.getScheduleID()}</td>-->
-                                    <td class="col-md-2">${schedule.getDate()}</td>
-                                    <td>${schedule.getTime()}</td>
-                                    <td>${schedule.getFrom()}</td>
-                                    <td>${schedule.getTo()}</td>
-                                    <!--<td>${schedule.getSeats_left()}</td>-->
-                                    <!--<td>${schedule.getSeats_total()}</td>-->
-                                    <td>
-                                        <form action="schedule" method="GET">
-                                            <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
-                                               <input type="hidden" name="post_action" value="edit" >
-                                            <input type="submit" class="btn btn-outline-primary" value="Edit" >
-                                        </form>    
-                                    </td>
-                                    <td>
-                                        <form action="schedule" method="POST">
-                                            <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
-                                            <input type="hidden" name="post_action" value="delete" >
-                                            <input type="submit" class="btn btn-outline-primary" value="Delete" >
-                                        </form>
-                                    </td> 
-                              </tr>
-                            </tbody>
+                            <% } %>
+                            <% if (scheduleList.size() == 0) {%>
+                             <div class="margin_top alert alert-dismissible alert-primary">
+                                
+                                 <strong>Oh snap!</strong> <p>No rides available at the moment.Please try again later.</p>
+                            </div>
+                            <% } %>
+                            
+                        </div>
+                        <div class="tab-pane fade" id="profile">
+                            <% if (userList.size() > 0) {%>
+                            <table class="table table-hover">
+                                      <thead>
+                                        <tr>
+                                         <th scope="col">Date</th>
+                                          <th scope="col">Time</th>
+                                          <th scope="col">From</th>
+                                          <th scope="col">TO</th>
+                                          <th scope="col">Action</th>
+                                          <!--<th scope="col">Time</th>-->
+                                        </tr>
+                                      </thead>
+                                      <c:forEach items="${userScheduleList}" var="schedule">             
+                                          <tbody>
+                                            <tr class="table-secondary">
+                                                  <!--<td>${schedule.getScheduleID()}</td>-->
+                                                  <td class="col-md-2">${schedule.getDate()}</td>
+                                                  <td>${schedule.getTime()}</td>
+                                                  <td>${schedule.getFrom()}</td>
+                                                  <td>${schedule.getTo()}</td>
+                                                  <!--<td>${schedule.getSeats_left()}</td>-->
+                                                  <!--<td>${schedule.getSeats_total()}</td>-->
+                                                  <td>
+                                                      <form action="schedule" method="GET">
+                                                            <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
+                                                            <input type="hidden" name="post_action" value="edit" >
+                                                            <input type="submit" class="btn btn-outline-primary" value="Edit" >
+                                                    </form>    
+                                                  </td>
+                                                  <td>
+                                                      <form action="schedule" method="POST">
+                                                          <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
+                                                          <input type="hidden" name="post_action" value="delete" >
+                                                          <input type="submit" class="btn btn-outline-primary" value="Delete" >
+                                                      </form>
+                                                  </td> 
+                                            </tr>
+                                          </tbody>
 
-                        </c:forEach>
-                    </table> 
-          </div>
+                                      </c:forEach>
+                                  </table> 
+                            <% } %>
+                            <% if (userList.size() == 0) {%>
+                            <div class=" margin_top alert alert-dismissible alert-primary">
+                                
+                                <strong>Oh snap!</strong> You donot have your schedule posted. Please add your schedule.
+                            </div>
+                            <% } %>
+                        </div>
         </div>
                 </div>
                  <div class="col-centered">
