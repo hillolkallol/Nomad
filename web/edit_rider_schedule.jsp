@@ -35,7 +35,8 @@
                          <label>Time</label>
                          <input type="time" class="form-control" id="time" name = "time" value = ${RiderSchedule.getTime()}>
                          </div>                                             
-                        <input type="hidden" name="post_action" value="update" >
+                        <input type="hidden" name="post_action" value="edit" >
+                        <input type="hidden" name="scheduleID" value= ${schID} >
                         <input type="Submit" class="btn btn-primary">
                     </form>
                 </div>

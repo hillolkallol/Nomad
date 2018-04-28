@@ -19,11 +19,11 @@ public class ScheduleTable {
     private PreparedStatement preparedStatement = null;
 //    String ex= Se;ect * from, shechudel where user_id = ? and schedule_id = ?
     private final String selectStmt = "SELECT S.* FROM Schedule S, Driver D where S.user_id = D.user_id and S.user_id != ?;";
-    private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?";
-    private final String selectOne = "SELECT * from Schedule where schedule_id = ?";
-    private final String deleteStmt = "Delete from Schedule where schedule_id = ?";
-    private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?)";
-    private final String updateStmt = "Update Schedule set from_location = ?, to_destination = ? , date = ?, time =?, seats_left=?, seats_total=? where schedule_id = ?";
+    private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?;";
+    private final String selectOne = "SELECT * from Schedule where schedule_id = ?;";
+    private final String deleteStmt = "Delete from Schedule where schedule_id = ?;";
+    private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?);";
+    private final String updateStmt = "Update Schedule set from_location = ?, to_destination = ? , date = ?, time =?, seats_left=?, seats_total=? where schedule_id = ?;";
 
     private static final int schedule_id = 0;
     private static final String time = "time";
@@ -62,7 +62,7 @@ public class ScheduleTable {
         return schdeleList;
     }
     
-    public List<Schedule> getUserSchedule(int userID) throws SQLException{
+    public List<Schedule> getDriverSchedule(int userID) throws SQLException{
        preparedStatement = conn.prepareStatement(selectScheduleUser);
        preparedStatement.setInt(1, userID);
        resultSet = preparedStatement.executeQuery();
