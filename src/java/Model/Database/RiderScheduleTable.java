@@ -5,6 +5,7 @@
  */
 package Model.Database;
 
+import Model.RiderSchedule;
 import Model.Schedule;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,12 +23,12 @@ public class RiderScheduleTable {
     private ResultSet resultSet = null;
     private PreparedStatement preparedStatement = null;
 //    String ex= Se;ect * from, shechudel where user_id = ? and schedule_id = ?
-    private final String selectStmt = "SELECT * FROM RiderSchedule where user_id != ?;";
-    private final String selectScheduleUser = "SELECT * FROM RiderSchedule where user_id = ?";
-    private final String selectOne = "SELECT * from RiderSchedule where schedule_id = ?";
-    private final String deleteStmt = "Delete from RiderSchedule where schedule_id = ?";
-    private final String insertStmt = "Insert into RiderSchedule (from_location, to_destination, date, time, user_id) values (?,?,?,?,?)";
-    private final String updateStmt = "Update RiderSchedule set from_location = ?, to_destination = ? , date = ?, time =?, where scheduleID = ?";
+    private final String selectStmt = "SELECT * FROM RiderSchedule where user_id == ?;";
+    private final String selectRiderSchedule = "SELECT * FROM RiderSchedule where user_id = ?;";
+    private final String selectOne = "SELECT * from RiderSchedule where schedule_id = ?;";
+    private final String deleteStmt = "Delete from RiderSchedule where schedule_id = ?;";
+    private final String insertStmt = "Insert into RiderSchedule (from_location, to_destination, date, time, user_id) values (?,?,?,?,?);";
+    private final String updateStmt = "Update RiderSchedule set from_location = ?, to_destination = ? , date = ?, time =? where schedule_id = ?;";
 
     private static final int schedule_id = 0;
     private static final String time = "time";
@@ -63,39 +64,39 @@ public class RiderScheduleTable {
         return schdeleList;
     }
     
-    public List<Schedule> getUserSchedule(int userID) throws SQLException{
-       preparedStatement = conn.prepareStatement(selectScheduleUser);
+    public List<RiderSchedule> getRiderSchedule(int userID) throws SQLException{
+       preparedStatement = conn.prepareStatement(selectRiderSchedule);
        preparedStatement.setInt(1, userID);
        resultSet = preparedStatement.executeQuery();
-       List<Schedule> schdeleList = new ArrayList<Schedule>();
+       List<RiderSchedule> riderSchdeleList = new ArrayList<RiderSchedule>();
        while (resultSet.next()) {
-        Schedule s = new Schedule();
-        s.scheduleID = resultSet.getInt(1);
-        s.date = resultSet.getString(2);
-        s.time = resultSet.getString(3);
-        s.from = resultSet.getString(from_location);
-        s.to = resultSet.getString(to_destination); 
-        schdeleList.add(s);
+            RiderSchedule s = new RiderSchedule();
+            s.scheduleID = resultSet.getInt(1);
+            s.date = resultSet.getString(2);
+            s.time = resultSet.getString(3);
+            s.from = resultSet.getString(from_location);
+            s.to = resultSet.getString(to_destination); 
+            riderSchdeleList.add(s);
        }
-        return schdeleList;
+        return riderSchdeleList;
     }
     
-           public Schedule getScheduleByID(int scheduleID) throws SQLException{
-        preparedStatement = conn.prepareStatement(selectOne);
-        preparedStatement.setInt(1, scheduleID);
-        resultSet = preparedStatement.executeQuery();
-        Schedule s = new Schedule();
+        public RiderSchedule getScheduleByID(int scheduleID) throws SQLException{
+            preparedStatement = conn.prepareStatement(selectOne);
+            preparedStatement.setInt(1, scheduleID);
+            resultSet = preparedStatement.executeQuery();
+            RiderSchedule rs = new RiderSchedule();
 
-        while (resultSet.next()) {
-            s.scheduleID = resultSet.getInt(1);
-            s.time = resultSet.getString(time);
-            s.from = resultSet.getString(from_location);
-            s.to = resultSet.getString(to_destination);
-//            s.schdeleList.add(s);
-//            s.date = resultSet.getString(date);
-            
-       }
-        return s;
+            while (resultSet.next()) {
+                rs.scheduleID = resultSet.getInt(1);
+                rs.time = resultSet.getString(time);
+                rs.from = resultSet.getString(from_location);
+                rs.to = resultSet.getString(to_destination);
+    //            s.schdeleList.add(s);
+    //            s.date = resultSet.getString(date);
+
+           }
+            return rs;
     }
     
        public void insertRiderSchedule(String from, String to, String date, String time, int userID) throws SQLException{
@@ -105,7 +106,7 @@ public class RiderScheduleTable {
            preparedStatement.setString(3, date);
            preparedStatement.setString(4,time);
      
-           preparedStatement.setInt(7,userID);
+           preparedStatement.setInt(5,userID);
            preparedStatement.executeUpdate();     
            
        }
@@ -116,7 +117,7 @@ public class RiderScheduleTable {
            preparedStatement.setString(2,to);
            preparedStatement.setString(3, date);
            preparedStatement.setString(4,time);
-           preparedStatement.setInt(7,scheduleID);
+           preparedStatement.setInt(5,scheduleID);
            preparedStatement.executeUpdate();     
            
        }

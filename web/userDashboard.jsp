@@ -49,7 +49,7 @@
                     
                         <div class="tab-pane fade active show" id="rides_available">
                             <% ArrayList scheduleList = (ArrayList )  request.getAttribute("scheduleList"); %>
-                            <% ArrayList userList = (ArrayList )  request.getAttribute("userScheduleList"); %>
+                            <% ArrayList userList = (ArrayList )  request.getAttribute("riderScheduleList"); %>
                             <% if (scheduleList.size() > 0) {%>
                             <table class="table table-hover">
                         <thead>
@@ -105,7 +105,7 @@
                                           <!--<th scope="col">Time</th>-->
                                         </tr>
                                       </thead>
-                                      <c:forEach items="${userScheduleList}" var="schedule">             
+                                      <c:forEach items="${riderScheduleList}" var="schedule">             
                                           <tbody>
                                             <tr class="table-secondary">
                                                   <!--<td>${schedule.getScheduleID()}</td>-->
@@ -113,17 +113,16 @@
                                                   <td>${schedule.getTime()}</td>
                                                   <td>${schedule.getFrom()}</td>
                                                   <td>${schedule.getTo()}</td>
-                                                  <!--<td>${schedule.getSeats_left()}</td>-->
-                                                  <!--<td>${schedule.getSeats_total()}</td>-->
+                                                 
                                                   <td>
-                                                      <form action="schedule" method="GET">
+                                                      <form action="RiderSchedule" method="GET">
                                                             <input type="hidden" name="action" value="${schedule.getScheduleID()}" >
-                                                            <!--<input type="hidden" name="post_action" value="edit" >-->
+                                                            <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
                                                             <input type="submit" class="btn btn-outline-primary" value="Edit" >
                                                     </form>    
                                                   </td>
                                                   <td>
-                                                      <form action="schedule" method="POST">
+                                                      <form action="RiderSchedule" method="POST">
                                                           <input type="hidden" name="scheduleID" value="${schedule.getScheduleID()}" >
                                                           <input type="hidden" name="post_action" value="delete" >
                                                           <input type="submit" class="btn btn-outline-primary" value="Delete" >
@@ -145,7 +144,7 @@
         </div>
                 </div>
                  <div class="col-centered">
-                 <form action="schedule" method="GET">
+                 <form action="RiderSchedule" method="GET">
                     <input type="hidden" name="action" value="new" >
                     <input type="submit" class="btn btn-outline-primary" value="Add Schedule" >
                 </form>

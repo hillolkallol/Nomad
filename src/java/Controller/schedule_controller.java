@@ -52,11 +52,13 @@ public class schedule_controller extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("new")){
+            
             request.getRequestDispatcher("driver_schedule.jsp").forward(request, response);
         }
         else{
             String schedule_id = request.getParameter("action");
             int sch_id = Integer.parseInt(schedule_id); 
+            request.setAttribute("schID", sch_id);
             try {
                 schedule = scTable.getScheduleByID(sch_id);
             } catch (SQLException ex) {
