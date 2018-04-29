@@ -39,7 +39,7 @@ public class RiderScheduleTable {
     public List<Schedule> getAllSchedule(int userID, String from) throws SQLException{
         
         if(from != null){
-            String Stmt = "SELECT * FROM RiderSchedule where user_id != ? and from_location = ?;";
+            String Stmt = "SELECT * FROM RiderSchedule where user_id = ? and from_location = ?;";
             preparedStatement = conn.prepareStatement(Stmt);
             preparedStatement.setInt(1, userID);
             preparedStatement.setString(2, from.trim());
