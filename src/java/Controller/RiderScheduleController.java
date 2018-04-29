@@ -48,7 +48,7 @@ public class RiderScheduleController extends HttpServlet {
         else{
             String schedule_id = request.getParameter("action");
             int sch_id = Integer.parseInt(schedule_id); 
-            request.setAttribute("schID", sch_id);
+            request.setAttribute("riderID", sch_id);
             try {
                 schedule = rsTable.getScheduleByID(sch_id);
             } catch (SQLException ex) {
