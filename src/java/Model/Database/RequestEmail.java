@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Model.Database;
+import java.sql.*;
+import java.util.*;
+import java.sql.Connection;
 
 import java.math.BigInteger;
 import java.net.MalformedURLException;
@@ -22,6 +25,9 @@ import javax.mail.internet.*;
  * @author suraj
  */
 public class RequestEmail {
+    private ResultSet resultSet = null;
+    private PreparedStatement preparedStatement = null;
+    private  Connection conn = MySQLConnection.connect();
     
     public void sendRequestEmail(int id, HttpServletRequest request) throws MalformedURLException, AddressException, MessagingException{
         //String to = email_address;
@@ -59,6 +65,41 @@ public class RequestEmail {
          }catch (MessagingException mex) {
             //msg = "Error: unable to send message....";
          }
+        
+    }
+    
+    public void sendRideInvitation(String email, int schedule_id, String hash) throws SQLException{
+        String command = "Insert into Invitation (email_id, schedule_id , hash_value) values (?,?,?);";
+        preparedStatement = conn.prepareStatement(command);
+        preparedStatement.setString(1, email);
+        preparedStatement.setInt(2, schedule_id);
+        preparedStatement.setString(3,hash);
+        preparedStatement.executeUpdate();
+    }
+    
+    public boolean checkHash(String email, String hash) throws SQLException{
+        String command = "Select email_id from Invitation where hash_value = ?";
+        preparedStatement = conn.prepareStatement(command);
+        preparedStatement.setString(1, hash);
+        resultSet = preparedStatement.executeQuery();
+        String em="";
+        while(resultSet.next()){
+             em = resultSet.getString("email_id");
+        }
+        if(em.equalsIgnoreCase(email)){
+            return true;
+        }
+        else{
+            return false;
+        }      
+    }
+    
+    public void removeHash(String email_id) throws SQLException{
+        String command = "Delete from Invitation where email_id = ?";
+        preparedStatement = conn.prepareStatement(command);
+        preparedStatement.setString(1, email_id);
+        preparedStatement.executeUpdate();
+     
         
     }
 }
