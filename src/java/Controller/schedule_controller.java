@@ -52,11 +52,13 @@ public class schedule_controller extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("new")){
+            
             request.getRequestDispatcher("driver_schedule.jsp").forward(request, response);
         }
         else{
             String schedule_id = request.getParameter("action");
             int sch_id = Integer.parseInt(schedule_id); 
+            request.setAttribute("schID", sch_id);
             try {
                 schedule = scTable.getScheduleByID(sch_id);
             } catch (SQLException ex) {
@@ -96,7 +98,6 @@ public class schedule_controller extends HttpServlet {
         HttpSession ses = request.getSession(false);
         int u_id = (Integer) ses.getAttribute("user_id");        
         
-//        System.out.println(from + to+ date +  time+ seats_left+ seats_total+ u_id+ action);
         ScheduleTable scTable = new ScheduleTable();
         try {
             
@@ -109,9 +110,9 @@ public class schedule_controller extends HttpServlet {
                   scTable.deleteDriverSchedule(sch_id);
 //                scTable.insertDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
             }
-            else{
-               
-                scTable.updateDriverSchedule(from, to, date, time, seats_left, seats_total, u_id);
+              else if(action.equalsIgnoreCase("edit")){
+                 int sch_id = Integer.parseInt(request.getParameter("scheduleID"));
+                scTable.updateDriverSchedule(from, to, date, time, seats_left, seats_total, sch_id);
             }
             if (ses != null) {
                 if(ses.getAttribute("user") != null){

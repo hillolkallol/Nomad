@@ -76,7 +76,7 @@ public class ProfileController extends HttpServlet {
             String s = "";
             s = usertable.updateUserInfo(userDetails);
             request.setAttribute("update_message", s);
-            doGet(request, response);
+            response.sendRedirect("dashboard");
         }
         else {
             request.setAttribute("update_message", "Old Password doesn't match!");

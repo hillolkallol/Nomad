@@ -27,7 +27,7 @@
                 <form method="post" action="registration" class="panel-body">
                     <input class="form-control" type="text" placeholder="First Name" name="FNAME" required><br>
                     <input class="form-control" type="text" placeholder="Last Name" name="LNAME" required><br>
-                    <input class="form-control" type="text" placeholder="Email Address" name="EMAIL" required><br>
+                    <input class="form-control" type="email" placeholder="Email Address" name="EMAIL" required><br>
                     <input class="form-control" type="password" placeholder="password" name="PASSWORD" required><br>
                     <input class="form-control" type="text" placeholder="Address" name="ADDRESS" required><br>
                     <label >Gender: </label>

@@ -23,13 +23,32 @@
                 <div class="panel-heading">
                     <!--<img class="logo" src="img/logo.png"><br><br>-->
                     <h2 >Become a Driver</h2></div>
-                <form method="post" action="beDriver" class="panel-body">
+                
+                <form method="post" action="beDriver" class="panel-body row">
+                    <div class="col-sm-6">
+                    <label>License No</label><br>
+                    </div>
+                    <div class="col-sm-6">
                     <input class="form-control" type="text" placeholder="License No" name="LNO" value="${userDetails.getLNo()!=0 ? userDetails.getLNo(): ""}" required><br>
-                    <input class="form-control" type="text" placeholder="Insurance No" name="INO" value="${userDetails.getINo() !=0 ? userDetails.getINo(): ""}" required><br>
-                    <input class="form-control" type="text" placeholder="Insurance Company" name="ICOM" value="${userDetails.getICom()}" required><br>
+                    </div>
                     
+                    <div class="col-sm-6">
+                    <label>License No</label><br>
+                    </div>
+                    <div class="col-sm-6">
+                    <input class="form-control" type="text" placeholder="Insurance No" name="INO" value="${userDetails.getINo() !=0 ? userDetails.getINo(): ""}" required><br>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                    <label>License No</label><br>
+                    </div>
+                    <div class="col-sm-6">
+                    <input class="form-control" type="text" placeholder="Insurance Company" name="ICOM" value="${userDetails.getICom()}" required><br>
                     <label><%= error%></label><br><br>
                     <input class="btn btn-primary" type="submit" value="Become a Driver"><br>
+                    </div>
+                    
+                    
                 </form>
             </div>
         </div>

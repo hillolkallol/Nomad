@@ -344,6 +344,34 @@ public class UserTable {
         return userDetails;
     }
 
+    public boolean checkIsDriver(User user) {
+        con = MySQLConnection.connect();
+        String sql = "SELECT * FROM Driver WHERE user_id=?";
+        boolean bool = false;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, user.getUserID());
+            
+            rs = pst.executeQuery();
+//            JOptionPane.showMessageDialog(null, user.getUserID());
+            if (rs.next()) {
+                String insurance_com = rs.getString("insurance_com");
+//                JOptionPane.showMessageDialog(null, insurance_com);
+                if (insurance_com.equals("")) {
+                    bool = false;
+                }
+                else {
+                    bool = true;
+                }
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bool;
+    }
+
 }
     
 

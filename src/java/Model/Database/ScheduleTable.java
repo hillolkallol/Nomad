@@ -18,12 +18,12 @@ public class ScheduleTable {
     private ResultSet resultSet = null;
     private PreparedStatement preparedStatement = null;
 //    String ex= Se;ect * from, shechudel where user_id = ? and schedule_id = ?
-    private final String selectStmt = "SELECT * FROM Schedule where user_id != ?;";
-    private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?";
-    private final String selectOne = "SELECT * from Schedule where schedule_id = ?";
-    private final String deleteStmt = "Delete from Schedule where schedule_id = ?";
-    private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?)";
-    private final String updateStmt = "Update Schedule set from_location = ?, to_destination = ? , date = ?, time =?, seats_left=?, seats_total=? where user_id = ?";
+    private final String selectStmt = "SELECT S.* FROM Schedule S, Driver D where S.user_id = D.user_id and S.user_id != ?;";
+    private final String selectScheduleUser = "SELECT * FROM Schedule where user_id = ?;";
+    private final String selectOne = "SELECT * from Schedule where schedule_id = ?;";
+    private final String deleteStmt = "Delete from Schedule where schedule_id = ?;";
+    private final String insertStmt = "Insert into Schedule (from_location, to_destination, date, time, seats_left, seats_total, user_id) values (?,?,?,?,?,?,?);";
+    private final String updateStmt = "Update Schedule set from_location = ?, to_destination = ? , date = ?, time =?, seats_left=?, seats_total=? where schedule_id = ?;";
 
     private static final int schedule_id = 0;
     private static final String time = "time";
@@ -36,7 +36,7 @@ public class ScheduleTable {
     public List<Schedule> getAllSchedule(int userID, String from) throws SQLException{
         
         if(from != null){
-            String Stmt = "SELECT * FROM Schedule where user_id != ? and from_location = ?;";
+            String Stmt = "SELECT S.* FROM Schedule S, Driver D where S.user_id = D.user_id and S.user_id != ? and S.from_location = ?;";
             preparedStatement = conn.prepareStatement(Stmt);
             preparedStatement.setInt(1, userID);
             preparedStatement.setString(2, from.trim());
@@ -49,7 +49,6 @@ public class ScheduleTable {
 
        List<Schedule> schdeleList = new ArrayList<Schedule>();
        while (resultSet.next()) {
-            System.out.println(resultSet.getInt(1));
             Schedule s = new Schedule();
             s.scheduleID = resultSet.getInt(1);
             s.date = resultSet.getString(2);
@@ -63,7 +62,7 @@ public class ScheduleTable {
         return schdeleList;
     }
     
-    public List<Schedule> getUserSchedule(int userID) throws SQLException{
+    public List<Schedule> getDriverSchedule(int userID) throws SQLException{
        preparedStatement = conn.prepareStatement(selectScheduleUser);
        preparedStatement.setInt(1, userID);
        resultSet = preparedStatement.executeQuery();
@@ -115,7 +114,7 @@ public class ScheduleTable {
            
        }
        
-        public void updateDriverSchedule(String from, String to, String date, String time, String seats_left, String total_seats, int userID) throws SQLException{
+        public void updateDriverSchedule(String from, String to, String date, String time, String seats_left, String total_seats, int scheduleID) throws SQLException{
            preparedStatement = conn.prepareStatement(updateStmt);
            preparedStatement.setString(1, from);
            preparedStatement.setString(2,to);
@@ -123,7 +122,7 @@ public class ScheduleTable {
            preparedStatement.setString(4,time);
            preparedStatement.setInt(5,Integer.parseInt(seats_left));
            preparedStatement.setInt(6,Integer.parseInt(total_seats));
-           preparedStatement.setInt(7,userID);
+           preparedStatement.setInt(7,scheduleID);
            preparedStatement.executeUpdate();     
            
        }
@@ -133,5 +132,17 @@ public class ScheduleTable {
           
            preparedStatement.executeUpdate();     
            
+       }
+        
+       public String getScheduleOwnerInfo(int schedule_id) throws SQLException{
+           String email = "";
+           String command = "select email_id from User where user_id = (Select user_id from Schedule where schedule_id = ?);";
+            preparedStatement = conn.prepareStatement(command);
+            preparedStatement.setInt(1, schedule_id);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                email = resultSet.getString("email_id");
+            }
+           return email;
        }
 }

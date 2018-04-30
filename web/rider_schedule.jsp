@@ -18,25 +18,26 @@
             <div class="row">
                 <div class=" col-sm-4 col-sm-offset-4">
                   
-                    <form name="drivers_scheduule" method="POST" action = "schedule">
+                    <form name="rider" method="POST" action = "RiderSchedule">
                        <div class="form-group">
                          <label>From</label>
-                         <input type="text" class="form-control" id="from" name = "from" placeholder="From Address" size="50">
+                         <input type="text" class="form-control" id="from" required name = "from" placeholder="From Address" size="50">
                          </div>
                          <div class="form-group">
                          <label >To</label>
-                         <input type="text" class="form-control" id="to" name = "to" placeholder="Destination Address" size="50">
+                         <input type="text" class="form-control" id="to" required name = "to" placeholder="Destination Address" size="50">
                          </div>
                          <div class="form-group">
                          <label>Date</label>
-                         <input type="date" class="form-control" id="date" name = "date">
+                         <input type="date" class="form-control" id="date" name = "date" required>
                          </div>
                          <div class="form-group">
                          <label>Time</label>
-                         <input type="time" class="form-control" id="time" name = "time">
+                         <input type="time" class="form-control" id="time" name = "time" required>
                          </div>
                                               
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <input type="hidden" name="post_action" value="insert" >
+                        <input type="Submit" class="btn btn-primary">
                     </form>
                 </div>
             </div>

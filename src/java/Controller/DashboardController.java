@@ -6,8 +6,11 @@
 package Controller;
 
 import Model.Database.RequestEmail;
+import Model.Database.RiderScheduleTable;
 import Model.Database.ScheduleTable;
+import Model.RiderSchedule;
 import Model.Schedule;
+import Model.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,8 +33,10 @@ import javax.servlet.http.HttpSession;
  */
 public class DashboardController extends HttpServlet {
     List<Schedule> scheduleList;
-    List<Schedule> userScheduleList;
+    
+    
     ScheduleTable scTable = new ScheduleTable();
+    RiderScheduleTable rsd = new RiderScheduleTable();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -50,15 +55,40 @@ public class DashboardController extends HttpServlet {
             //all scheduleTable
             
             HttpSession ses = request.getSession(false);
+            User u = new User();
+            u = (User) ses.getAttribute("user");
             int u_id = (Integer) ses.getAttribute("user_id");
 //            System.out.println(ses.getAttribute("user_id"));
             String from = request.getParameter("city");           
             scheduleList = scTable.getAllSchedule(u_id, from);
-            userScheduleList = scTable.getUserSchedule(u_id);
+            
+            request.setAttribute("isDriver", u.getIsDriver());
             request.setAttribute("scheduleList", scheduleList);
-            request.setAttribute("userScheduleList", userScheduleList);
+            
+            if(u.getIsDriver()){
+                System.out.println("sdsd");
+                List<Schedule> userScheduleList;
+                userScheduleList = scTable.getDriverSchedule(u_id);
+               
+                request.setAttribute("userScheduleList", userScheduleList);
+                request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            }
+            else{
+                System.out.println("rideer");
+//                userScheduleList = scTable.getDriverSchedule(u_id);
+//                request.setAttribute("userScheduleList", userScheduleList);
+                List <RiderSchedule> riderScheduleList;
+                riderScheduleList = rsd.getRiderSchedule(u_id);
+                 for (int i = 0; i < riderScheduleList.size(); i++){
+                    System.out.println(riderScheduleList.get(i));
+                }
+//                System.out.println(userScheduleList.size());
+                
+                request.setAttribute("riderScheduleList", riderScheduleList);
+                request.getRequestDispatcher("userDashboard.jsp").forward(request, response);
+            }
 //            request.setAttribute("mySchedule")
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            
         } catch (SQLException ex) {
             System.out.println(ex);
             //Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
