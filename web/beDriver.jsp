@@ -33,14 +33,14 @@
                     </div>
                     
                     <div class="col-sm-6">
-                    <label>License No</label><br>
+                    <label>Insurance No</label><br>
                     </div>
                     <div class="col-sm-6">
                     <input class="form-control" type="text" placeholder="Insurance No" name="INO" value="${userDetails.getINo() !=0 ? userDetails.getINo(): ""}" required><br>
                     </div>
                     
                     <div class="col-sm-6">
-                    <label>License No</label><br>
+                    <label>Insurance Company</label><br>
                     </div>
                     <div class="col-sm-6">
                     <input class="form-control" type="text" placeholder="Insurance Company" name="ICOM" value="${userDetails.getICom()}" required><br>

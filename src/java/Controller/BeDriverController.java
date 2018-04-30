@@ -65,6 +65,6 @@ public class BeDriverController extends HttpServlet {
         usertable.register_as_driver(user2);
 //        JOptionPane.showMessageDialog(null, b);
         
-        response.sendRedirect("beDriver");
+        response.sendRedirect("dashboard");
     }
 }
